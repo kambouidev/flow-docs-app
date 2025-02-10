@@ -1,28 +1,26 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { IDocument } from '../types/IDocument';
 
 interface DocumentCardDetailsProps {
-    title: string;
-    version: string;
-    contributors: string[];
-    attachments: string[]
+    document: IDocument
 }
 
 
 
-export const DocumentCardDetails: React.FC<DocumentCardDetailsProps> = ({ title, version, contributors, attachments }) => (
+export const DocumentCardDetails: React.FC<DocumentCardDetailsProps> = ({ document: { Attachments, Contributors, Title, Version } }) => (
     <View style={styles.card}>
         <Text style={styles.cardTitle}>
-            {title} <Text style={styles.cardVersion}>Version {version}</Text>
+            {Title} <Text style={styles.cardVersion}>Version {Version}</Text>
         </Text>
         <View style={styles.cardcontent}>
             <View style={{ flex: 1 }}>
                 <Text style={styles.cardSubtitle}>Contributors</Text>
-                {contributors.map((contributor, index) => <Text key={index}>{contributor}</Text>)}
+                {Contributors.map(({ ID, Name }) => <Text key={ID}>{Name}</Text>)}
             </View>
             <View style={{ flex: 1 }}>
                 <Text style={styles.cardSubtitle}>Attachments</Text>
-                {attachments.map((file, index) => <Text key={index}>{file}</Text>)}
+                {Attachments.map((file, index) => <Text key={index}>{file}</Text>)}
             </View>
         </View>
     </View>

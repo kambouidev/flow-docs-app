@@ -1,17 +1,17 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { IDocument } from '../types/IDocument';
 
 interface DocumentCardSimpleProps {
-    title: string;
-    version: string;
+    document: IDocument
 }
 
 
 
-export const DocumentCardSimple: React.FC<DocumentCardSimpleProps> = ({ title, version }) => (
+export const DocumentCardSimple: React.FC<DocumentCardSimpleProps> = ({ document: { Title, Version } }) => (
     <View style={styles.card}>
-        <Text style={styles.cardTitle}>{title}</Text>
-        <Text style={styles.cardVersion}>Version {version}</Text>
+        <Text style={styles.cardTitle}>{Title}</Text>
+        <Text style={styles.cardVersion}>Version {Version}</Text>
     </View>
 );
 
