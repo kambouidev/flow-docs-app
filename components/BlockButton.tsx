@@ -1,8 +1,5 @@
-import React, { FC, ReactElement } from 'react'
+import React, { FC } from 'react'
 import { View, TouchableOpacity, StyleSheet, Text } from 'react-native';
-
-
-
 import { Ionicons } from "@expo/vector-icons";
 
 export enum IconType {
@@ -17,15 +14,16 @@ const iconMap = {
 
 interface BlockButtonProps {
     text: string,
+    handlePress: () => void
     iconType?: IconType;
 }
 
-const BlockButton: FC<BlockButtonProps> = ({ text, iconType }) => {
+const BlockButton: FC<BlockButtonProps> = ({ text, iconType, handlePress }) => {
     const icon = iconType ? iconMap[iconType] : null;
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button} onPress={() => handlePress()}>
                 {icon && <View>{icon}</View>}
                 <Text style={styles.textButton}>{text}</Text>
             </TouchableOpacity>
@@ -37,7 +35,7 @@ const styles = StyleSheet.create({
     container: {
         justifyContent: 'center',
         padding: 16,
-        borderTopWidth: 0.5
+        borderTopWidth: 0.3
     },
     button: {
         alignItems: 'center',
