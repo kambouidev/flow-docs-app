@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
         elevation: 2,
         display: 'flex',
         flexDirection: 'column',
+        maxWidth: '47%',
     },
     cardTitle: {
         fontSize: 16,
