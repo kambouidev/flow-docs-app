@@ -12,3 +12,13 @@ export interface IDocument {
   CreatedAt: string;
   UpdatedAt: string;
 }
+
+export enum ViewMode {
+  List = 'list',
+  Grid = 'grid',
+}
+
+export enum SortOption {
+  Name = 'name',
+  Version = 'version',
+}
