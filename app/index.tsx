@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { View, FlatList, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import Header from "../components/Header";
 import { DocumentCardDetails } from "../components/DocumentCardDetails";
 import { DocumentCardSimple } from "../components/DocumentCardSimple";
@@ -8,6 +8,7 @@ import SortByPicker from "../components/SortByPicker";
 import { IDocument, SortOption, ViewMode } from "../types/IDocument";
 import ViewModeSelector from "../components/ViewModeSelector";
 import { useSortedDocuments } from "../hooks/useSortedDocuments";
+import BlockButton, { IconType } from "../components/BlockButton";
 
 const documentsTemplate: IDocument[] = [
   {
@@ -111,6 +112,7 @@ export default function DocumentsScreen() {
           )
         }
       />
+      <BlockButton text="Add document" iconType={IconType.Add} />
 
     </View>
   );
