@@ -16,14 +16,15 @@ interface BlockButtonProps {
     text: string,
     handlePress: () => void
     iconType?: IconType;
+    disabled?: boolean
 }
 
-const BlockButton: FC<BlockButtonProps> = ({ text, iconType, handlePress }) => {
+const BlockButton: FC<BlockButtonProps> = ({ text, iconType, disabled, handlePress }) => {
     const icon = iconType ? iconMap[iconType] : null;
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={styles.button} onPress={() => handlePress()}>
+            <TouchableOpacity style={[styles.button, disabled && styles.disable]} onPress={handlePress} disabled={disabled}>
                 {icon && <View>{icon}</View>}
                 <Text style={styles.textButton}>{text}</Text>
             </TouchableOpacity>
@@ -51,6 +52,9 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 16
     },
+    disable: {
+        opacity: .5
+    }
 })
 
 
