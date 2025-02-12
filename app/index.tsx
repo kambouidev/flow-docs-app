@@ -1,6 +1,5 @@
-import React, { useMemo, useState } from "react";
-import { View, FlatList, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import React, { useState } from "react";
+import { View, FlatList, StyleSheet } from "react-native";
 import Header from "../components/Header";
 import { DocumentCardDetails } from "../components/DocumentCardDetails";
 import { DocumentCardSimple } from "../components/DocumentCardSimple";
@@ -9,6 +8,8 @@ import { IDocument, SortOption, ViewMode } from "../types/IDocument";
 import ViewModeSelector from "../components/ViewModeSelector";
 import { useSortedDocuments } from "../hooks/useSortedDocuments";
 import BlockButton, { IconType } from "../components/BlockButton";
+import AddDocumentModal from "../components/AddDocumentModal";
+import { useShareDocument } from "../hooks/useShareDocument";
 
 const documentsTemplate: IDocument[] = [
   {
@@ -30,10 +31,10 @@ const documentsTemplate: IDocument[] = [
         Name: "Rosemarie Schaden"
       }
     ],
-    CreatedAt: "1912-03-08T06:01:39.382278739Z",
+    CreatedAt: "2025-02-11T06:01:39.382278739Z",
     ID: "69517c79-a4b2-4f64-9c83-20e5678e4519",
     Title: "Arrogant Bastard Ale",
-    UpdatedAt: "1952-02-29T22:21:13.817038244Z",
+    UpdatedAt: "2025-02-29T22:21:13.817038244Z",
     Version: "5.3.15"
   },
   {
@@ -86,11 +87,17 @@ export default function DocumentsScreen() {
   const [orderAscending, setOrderAscending] = useState<boolean>(true);
   const [sortBy, setSortBy] = useState<SortOption>(SortOption.Name);
   const [viewMode, setViewMode] = useState<ViewMode>(ViewMode.List);
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const { shareDocument } = useShareDocument();
 
   const toggleOrder = () => setOrderAscending(!orderAscending);
 
   const sortedDocuments = useSortedDocuments({ documents, sortBy, orderAscending })
 
+
+  const toggleModal = () => {
+    setShowModal(!showModal)
+  }
   return (
     <View style={styles.container}>
       <Header title="Documents" />
@@ -106,14 +113,14 @@ export default function DocumentsScreen() {
         numColumns={viewMode === ViewMode.Grid ? 2 : 1}
         renderItem={({ item }) =>
           viewMode === ViewMode.List ? (
-            <DocumentCardDetails document={item} />
+            <DocumentCardDetails document={item} handleShareDocument={shareDocument} />
           ) : (
             <DocumentCardSimple document={item} />
           )
         }
       />
-      <BlockButton text="Add document" iconType={IconType.Add} />
-
+      <BlockButton text="Add document" iconType={IconType.Add} handlePress={toggleModal} />
+      <AddDocumentModal onAddDocument={(file) => { console.log('se selecciona esto', { file }) }} onClose={toggleModal} visible={showModal} />
     </View>
   );
 }
