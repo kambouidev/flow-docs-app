@@ -3,12 +3,9 @@ import { StyleSheet, Text, View } from "react-native";
 import { IDocument } from "../types/IDocument";
 import { timeAgo } from "../services/utils";
 import { FontAwesome } from "@expo/vector-icons";
+import { INotification } from "../types/INotification";
 
-interface NotificationCardProps {
-    document: IDocument,
-    seen: boolean
-}
-const NotificationCard: FC<NotificationCardProps> = ({ document, seen }) => {
+const NotificationCard: FC<INotification> = ({ document, seen }) => {
     return (
         <View style={styles.card}>
             <View style={styles.cardHeader}>
