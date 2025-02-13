@@ -10,6 +10,7 @@ import { useSortedDocuments } from "../hooks/useSortedDocuments";
 import BlockButton, { IconType } from "../components/BlockButton";
 import AddDocumentModal from "../components/AddDocumentModal";
 import { useShareDocument } from "../hooks/useShareDocument";
+import { useRouter } from "expo-router";
 
 const documentsTemplate: IDocument[] = [
   {
@@ -89,6 +90,7 @@ export default function DocumentsScreen() {
   const [viewMode, setViewMode] = useState<ViewMode>(ViewMode.List);
   const [showModal, setShowModal] = useState<boolean>(false);
   const { shareDocument } = useShareDocument();
+  const router = useRouter();
 
   const toggleOrder = () => setOrderAscending(!orderAscending);
 
@@ -100,7 +102,7 @@ export default function DocumentsScreen() {
   }
   return (
     <View style={styles.container}>
-      <Header title="Documents" />
+      <Header title="Documents" goToNotifications={() => { router.push('/notifications') }} />
       <View style={styles.controls}>
         <SortByPicker onSelect={setSortBy} onToggleOrder={toggleOrder} orderAscending={orderAscending} />
         <ViewModeSelector viewMode={viewMode} onChangeViewMode={setViewMode} />
