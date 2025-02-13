@@ -12,9 +12,11 @@ import AddDocumentModal from "../components/AddDocumentModal";
 import { useShareDocument } from "../hooks/useShareDocument";
 import { useRouter } from "expo-router";
 import { useDocumentsStore } from "../stores/documents.store";
+import { useNotifications } from "../stores/notifications.store";
 
 export default function DocumentsScreen() {
-  const { documents } = useDocumentsStore()
+  const { documents } = useDocumentsStore();
+  const { unseenNotificationsCount } = useNotifications();
   const [orderAscending, setOrderAscending] = useState<boolean>(true);
   const [sortBy, setSortBy] = useState<SortOption>(SortOption.Name);
   const [viewMode, setViewMode] = useState<ViewMode>(ViewMode.List);
@@ -32,7 +34,7 @@ export default function DocumentsScreen() {
 
   return (
     <View style={styles.container}>
-      <Header title="Documents" goToNotifications={() => { router.push('/notifications') }} />
+      <Header title="Documents" notifications={unseenNotificationsCount} goToNotifications={() => { router.push('/notifications') }} />
       <View style={styles.controls}>
         <SortByPicker onSelect={setSortBy} onToggleOrder={toggleOrder} orderAscending={orderAscending} />
         <ViewModeSelector viewMode={viewMode} onChangeViewMode={setViewMode} />
