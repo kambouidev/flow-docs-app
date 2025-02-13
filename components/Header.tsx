@@ -29,8 +29,8 @@ const Header: React.FC<HeaderProps> = ({ title, onClose, backButton, goToNotific
             {goToNotifications && <View>
                 <TouchableOpacity style={styles.notificationsButton} onPress={goToNotifications}>
                     <Ionicons name="notifications-outline" size={24} color="black" />
-                    {notifications && notifications > 0 && <View style={styles.dot}>
-                        <Text style={styles.dotText}>{Math.min(notifications, 99)}</Text>
+                    {notifications !== undefined && notifications > 0 && <View style={styles.dot}>
+                        <Text style={styles.dotText}>{`${Math.min(notifications, 99)}`}</Text>
                     </View>}
                 </TouchableOpacity>
             </View>}
