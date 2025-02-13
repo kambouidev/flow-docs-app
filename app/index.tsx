@@ -13,9 +13,12 @@ import { useShareDocument } from "../hooks/useShareDocument";
 import { useRouter } from "expo-router";
 import { useDocumentsStore } from "../stores/documents.store";
 import { useNotifications } from "../stores/notifications.store";
+import LoadingIndicator from "../components/LoadingIndicator";
+import ErrorIndicator from "../components/ErrorIndicator";
 
 export default function DocumentsScreen() {
-  const { documents } = useDocumentsStore();
+  const { documents, isLoadingDocuments, errorGettingDocuments } = useDocumentsStore();
+
   const { unseenNotificationsCount } = useNotifications();
   const [orderAscending, setOrderAscending] = useState<boolean>(true);
   const [sortBy, setSortBy] = useState<SortOption>(SortOption.Name);
@@ -32,13 +35,18 @@ export default function DocumentsScreen() {
     setShowModal(!showModal)
   }
 
-  return (
-    <View style={styles.container}>
-      <Header title="Documents" notifications={unseenNotificationsCount} goToNotifications={() => { router.push('/notifications') }} />
-      <View style={styles.controls}>
-        <SortByPicker onSelect={setSortBy} onToggleOrder={toggleOrder} orderAscending={orderAscending} />
-        <ViewModeSelector viewMode={viewMode} onChangeViewMode={setViewMode} />
-      </View>
+
+  const renderContent = () => {
+    if (isLoadingDocuments) {
+      return <LoadingIndicator message="Loading documents..." />
+    }
+
+    if (isLoadingDocuments) {
+      return <ErrorIndicator message={`Error: ${errorGettingDocuments?.message}`} />
+    }
+
+    return (
+
       <FlatList
         key={viewMode}
         bounces={false}
@@ -53,6 +61,17 @@ export default function DocumentsScreen() {
           )
         }
       />
+    )
+  }
+
+  return (
+    <View style={styles.container}>
+      <Header title="Documents" notifications={unseenNotificationsCount} goToNotifications={() => { router.push('/notifications') }} />
+      <View style={styles.controls}>
+        <SortByPicker onSelect={setSortBy} onToggleOrder={toggleOrder} orderAscending={orderAscending} />
+        <ViewModeSelector viewMode={viewMode} onChangeViewMode={setViewMode} />
+      </View>
+      {renderContent()}
       <BlockButton text="Add document" iconType={IconType.Add} handlePress={toggleModal} />
       <AddDocumentModal onAddDocument={(file) => { console.log('se selecciona esto', { file }) }} onClose={toggleModal} visible={showModal} />
     </View>
