@@ -1,6 +1,8 @@
-import { IDocument } from './IDocument';
-
 export interface INotification {
   seen: boolean;
-  document: IDocument;
+  UserName: string;
+  Timestamp: string;
+  UserID: string;
+  DocumentID: string;
+  DocumentTitle: string;
 }

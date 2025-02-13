@@ -17,7 +17,7 @@ export default function NotificationsScreen() {
                 <FlatList
                     bounces={false}
                     data={notifications}
-                    keyExtractor={(item) => item.document.ID}
+                    keyExtractor={(item) => item.DocumentID}
                     renderItem={({ item }) =>
                         <NotificationCard  {...item} />
                     }

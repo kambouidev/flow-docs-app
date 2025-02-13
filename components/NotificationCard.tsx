@@ -1,32 +1,23 @@
 import React, { FC } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { IDocument } from "../types/IDocument";
 import { timeAgo } from "../services/utils";
-import { FontAwesome } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import { INotification } from "../types/INotification";
 
-const NotificationCard: FC<INotification> = ({ document, seen }) => {
+const NotificationCard: FC<INotification> = ({ DocumentTitle, Timestamp, UserName }) => {
     return (
         <View style={styles.card}>
             <View style={styles.cardHeader}>
-                <Text style={styles.cardTitle}>New upload</Text>
-                <Text style={styles.documentTitle}>{document.Title}</Text>
+                <Text style={styles.userName}>{UserName}</Text>
+                <Text style={styles.action}>added new document!</Text>
             </View>
             <View style={styles.cardContent}>
                 <View style={styles.contentContainer}>
-                    <FontAwesome name="group" size={18} color="black" />
-                    <Text style={styles.contentText}>{document.Contributors.length}</Text>
-                </View>
-                <View style={styles.contentContainer}>
-                    <FontAwesome name="paperclip" size={18} color="black" />
-                    <Text style={styles.contentText}>{document.Attachments.length}</Text>
-                </View>
-                <View style={styles.contentContainer}>
-                    <FontAwesome name="tag" size={18} color="black" />
-                    <Text style={styles.contentText}>{document.Version}</Text>
+                    <Ionicons name="document-text-outline" size={24} color="black" />
+                    <Text style={styles.contentText}>{DocumentTitle}</Text>
                 </View>
                 <View style={styles.timeAgoContainer}>
-                    <Text style={styles.timeAgoText}>{timeAgo(document.CreatedAt)}</Text>
+                    <Text style={styles.timeAgoText}>{timeAgo(Timestamp)}</Text>
                 </View>
             </View>
         </View>
@@ -50,10 +41,10 @@ const styles = StyleSheet.create({
         gap: 15,
         padding: 5
     },
-    cardTitle: {
+    action: {
         fontSize: 16,
     },
-    documentTitle: {
+    userName: {
         fontSize: 18,
         fontWeight: "bold"
     },
@@ -64,7 +55,7 @@ const styles = StyleSheet.create({
     },
     contentText: {
         fontSize: 14,
-        color: 'blue'
+        fontWeight: "700"
     },
     timeAgoContainer: {
         flex: 1,
