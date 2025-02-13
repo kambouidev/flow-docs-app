@@ -80,7 +80,7 @@ export function useNotifications() {
     );
   };
 
-  const unseenCount = notifications.filter((notification) => !notification.seen).length;
+  const unseenNotificationsCount = notifications.filter((notification) => !notification.seen).length;
 
-  return { notifications, addNotification, setSeenNotifications, unseenCount };
+  return { notifications, addNotification, setSeenNotifications, unseenNotificationsCount };
 }

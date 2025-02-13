@@ -7,9 +7,10 @@ interface HeaderProps {
     onClose?: () => void
     goToNotifications?: () => void
     backButton?: () => void
+    notifications?: number
 }
 
-const Header: React.FC<HeaderProps> = ({ title, onClose, backButton, goToNotifications }) => {
+const Header: React.FC<HeaderProps> = ({ title, onClose, backButton, goToNotifications, notifications }) => {
     return (
         <View style={styles.header}>
             <View style={styles.headerLeft}>
@@ -28,9 +29,9 @@ const Header: React.FC<HeaderProps> = ({ title, onClose, backButton, goToNotific
             {goToNotifications && <View>
                 <TouchableOpacity style={styles.notificationsButton} onPress={goToNotifications}>
                     <Ionicons name="notifications-outline" size={24} color="black" />
-                    <View style={styles.dot}>
-                        <Text style={styles.dotText}>99</Text>
-                    </View>
+                    {notifications && notifications > 0 && <View style={styles.dot}>
+                        <Text style={styles.dotText}>{Math.min(notifications, 99)}</Text>
+                    </View>}
                 </TouchableOpacity>
             </View>}
         </View>
@@ -64,15 +65,20 @@ const styles = StyleSheet.create({
         borderRadius: 10
     },
     dot: {
+        height: 15,
+        width: 15,
         borderRadius: 15,
         position: "absolute",
         backgroundColor: 'blue',
         right: 8,
         top: 5,
+        justifyContent: 'center',
+        alignItems: 'center',
+
     },
     dotText: {
         textAlign: "center",
-        padding: 2,
+        //padding: 2,
         color: 'white',
         fontSize: 10
     }
