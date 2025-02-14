@@ -3,11 +3,11 @@ import { FlatList, StyleSheet, View } from "react-native";
 import Header from "../components/Header";
 import { useRouter } from "expo-router";
 import NotificationCard from "../components/NotificationCard";
-import { useNotifications } from "../stores/notifications.store";
+import { useNotificationsStore } from "../stores/notifications.store";
 
 
 export default function NotificationsScreen() {
-    const { notifications, setSeenNotifications } = useNotifications();
+    const { notifications, setSeenNotifications } = useNotificationsStore();
     const router = useRouter();
 
 
