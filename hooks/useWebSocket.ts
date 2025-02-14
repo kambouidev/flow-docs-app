@@ -1,6 +1,6 @@
 import { useEffect, useRef, useCallback, useState } from 'react';
 import { INotification } from '../types/INotification';
-import { useNotifications } from '../stores/notifications.store';
+import { useToastNotification } from './useToastNotification';
 
 type WebSocketStatus = 'CONNECTING' | 'OPEN' | 'CLOSED' | 'CLOSING';
 
@@ -8,8 +8,7 @@ export const useWebSocket = () => {
   const wsRef = useRef<WebSocket | null>(null);
   const [status, setStatus] = useState<WebSocketStatus>('CLOSED');
   const [error, setError] = useState<string | null>(null);
-  const { addNotification } = useNotifications();
-
+  const { showNotification } = useToastNotification();
   const connect = useCallback(() => {
     try {
       const wsUrl = `ws://${process.env.EXPO_PUBLIC_SERVER_ADDR}/notifications`;
@@ -36,7 +35,7 @@ export const useWebSocket = () => {
         //console.log('📩 WebSocket Message:', event.data);
         try {
           const newNotification: Omit<INotification, 'seen'> = JSON.parse(event.data);
-          addNotification({ ...newNotification, seen: false });
+          showNotification({ ...newNotification, seen: false });
         } catch (error) {
           //console.error('Error parsing WebSocket message:', error);
         }
