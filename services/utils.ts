@@ -9,7 +9,7 @@ export const timeAgo = (date: string) => {
   const diffMonths = Math.floor(diffDays / 30);
   const diffYears = Math.floor(diffDays / 365);
 
-  if (diffSec < 60) return `${diffSec} second${diffSec !== 1 ? 's' : ''} ago`;
+  if (diffSec < 60) return `now`;
   if (diffMin < 60) return `${diffMin} minute${diffMin !== 1 ? 's' : ''} ago`;
   if (diffHours < 24) return `${diffHours} hour${diffHours !== 1 ? 's' : ''} ago`;
   if (diffDays < 30) return `${diffDays} day${diffDays !== 1 ? 's' : ''} ago`;
