@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, FlatList, StyleSheet } from "react-native";
 import Header from "../components/Header";
 import { DocumentCardDetails } from "../components/DocumentCardDetails";
@@ -12,14 +12,16 @@ import AddDocumentModal from "../components/AddDocumentModal";
 import { useShareDocument } from "../hooks/useShareDocument";
 import { useRouter } from "expo-router";
 import { useDocumentsStore } from "../stores/documents.store";
-import { useNotifications } from "../stores/notifications.store";
+import { useNotificationsStore } from "../stores/notifications.store";
 import LoadingIndicator from "../components/LoadingIndicator";
 import ErrorIndicator from "../components/ErrorIndicator";
+import Toast from "react-native-toast-message";
+import { toastConfig } from "../config/ToastConfig";
 
 export default function DocumentsScreen() {
   const { documents, isLoadingDocuments, errorGettingDocuments, refetchDocuments } = useDocumentsStore();
 
-  const { unseenNotificationsCount } = useNotifications();
+  const { unseenNotificationsCount } = useNotificationsStore();
   const [orderAscending, setOrderAscending] = useState<boolean>(true);
   const [sortBy, setSortBy] = useState<SortOption>(SortOption.Name);
   const [viewMode, setViewMode] = useState<ViewMode>(ViewMode.List);
@@ -82,6 +84,7 @@ export default function DocumentsScreen() {
       {renderContent()}
       <BlockButton text="Add document" iconType={IconType.Add} handlePress={toggleModal} />
       <AddDocumentModal onAddDocument={(file) => { console.log('Selected file:', { file }) }} onClose={toggleModal} visible={showModal} />
+      <Toast config={toastConfig} />
     </View>
   );
 }
