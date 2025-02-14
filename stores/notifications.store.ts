@@ -9,10 +9,8 @@ export function useNotifications() {
     setNotifications((prev) => [notification, ...prev]);
   };
 
-  const setSeenNotifications = (ids: string[]) => {
-    setNotifications((prev) =>
-      prev.map((notification) => (ids.includes(notification.DocumentID) ? { ...notification, seen: true } : notification))
-    );
+  const setSeenNotifications = () => {
+    setNotifications((prev) => prev.map((notification) => ({ ...notification, seen: true })));
   };
 
   const unseenNotificationsCount = notifications.filter((notification) => !notification.seen).length;
