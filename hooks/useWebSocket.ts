@@ -12,7 +12,7 @@ export const useWebSocket = () => {
 
   const connect = useCallback(() => {
     try {
-      const wsUrl = `${process.env.EXPO_PUBLIC_WS_URL}notifications`;
+      const wsUrl = `ws://${process.env.EXPO_PUBLIC_SERVER_ADDR}/notifications`;
       wsRef.current = new WebSocket(wsUrl);
 
       wsRef.current.onopen = () => {
