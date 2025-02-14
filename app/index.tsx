@@ -23,7 +23,7 @@ export default function DocumentsScreen() {
 
   const { unseenNotificationsCount } = useNotificationsStore();
   const [orderAscending, setOrderAscending] = useState<boolean>(true);
-  const [sortBy, setSortBy] = useState<SortOption>(SortOption.Name);
+  const [sortBy, setSortBy] = useState<SortOption>(SortOption.CreatedAt);
   const [viewMode, setViewMode] = useState<ViewMode>(ViewMode.List);
   const [showModal, setShowModal] = useState<boolean>(false);
   const { shareDocument } = useShareDocument();

@@ -21,4 +21,6 @@ export enum ViewMode {
 export enum SortOption {
   Name = 'name',
   Version = 'version',
+  CreatedAt = 'Created date',
+  UpdatedAt = 'Updated date',
 }

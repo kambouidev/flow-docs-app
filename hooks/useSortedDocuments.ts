@@ -17,6 +17,16 @@ export function useSortedDocuments({ documents, sortBy, orderAscending }: UseSor
           return orderAscending
             ? a.Version.localeCompare(b.Version, undefined, { numeric: true })
             : b.Version.localeCompare(a.Version, undefined, { numeric: true });
+
+        case SortOption.CreatedAt:
+          return orderAscending
+            ? new Date(b.CreatedAt).getTime() - new Date(a.CreatedAt).getTime()
+            : new Date(a.CreatedAt).getTime() - new Date(b.CreatedAt).getTime();
+
+        case SortOption.UpdatedAt:
+          return orderAscending
+            ? new Date(a.UpdatedAt).getTime() - new Date(b.UpdatedAt).getTime()
+            : new Date(b.UpdatedAt).getTime() - new Date(a.UpdatedAt).getTime();
         default:
           return 0;
       }
