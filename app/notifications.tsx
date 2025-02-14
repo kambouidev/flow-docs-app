@@ -44,9 +44,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#F8F9FA"
     },
     content: {
-        borderWidth: 1,
         flex: 1,
-        borderColor: 'red',
     }
 
 });
