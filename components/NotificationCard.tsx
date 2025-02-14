@@ -1,17 +1,24 @@
 import React, { FC } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Animated, StyleSheet, Text, View } from "react-native";
 import { timeAgo } from "../services/utils";
 import { Ionicons } from "@expo/vector-icons";
 import { INotification } from "../types/INotification";
+import { useBlinkAnimation } from "../hooks/useBlinkAnimation";
 
-const NotificationCard: FC<INotification> = ({ DocumentTitle, Timestamp, UserName }) => {
+const NotificationCard: FC<INotification> = ({ DocumentTitle, Timestamp, UserName, seen }) => {
+    const animatedBackground = useBlinkAnimation(!seen);
+
+
     return (
-        <View style={styles.card}>
+        <Animated.View style={[
+            styles.card,
+            !seen && { backgroundColor: animatedBackground }
+        ]}>
             <View style={styles.cardHeader}>
                 <Text style={styles.userName}>{UserName}</Text>
                 <Text style={styles.action}>added new document!</Text>
             </View>
-            <View style={styles.cardContent}>
+            <View>
                 <View style={styles.contentContainer}>
                     <Ionicons name="document-text-outline" size={24} color="black" />
                     <Text style={styles.contentText}>{DocumentTitle}</Text>
@@ -20,9 +27,9 @@ const NotificationCard: FC<INotification> = ({ DocumentTitle, Timestamp, UserNam
                     <Text style={styles.timeAgoText}>{timeAgo(Timestamp)}</Text>
                 </View>
             </View>
-        </View>
-    )
-}
+        </Animated.View>
+    );
+};
 
 const styles = StyleSheet.create({
     card: {
@@ -35,11 +42,6 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "flex-end",
         gap: 5
-    },
-    cardContent: {
-        flexDirection: "row",
-        gap: 15,
-        padding: 5
     },
     action: {
         fontSize: 16,
