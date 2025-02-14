@@ -17,7 +17,7 @@ import LoadingIndicator from "../components/LoadingIndicator";
 import ErrorIndicator from "../components/ErrorIndicator";
 
 export default function DocumentsScreen() {
-  const { documents, isLoadingDocuments, errorGettingDocuments } = useDocumentsStore();
+  const { documents, isLoadingDocuments, errorGettingDocuments, refetchDocuments } = useDocumentsStore();
 
   const { unseenNotificationsCount } = useNotifications();
   const [orderAscending, setOrderAscending] = useState<boolean>(true);
@@ -26,6 +26,7 @@ export default function DocumentsScreen() {
   const [showModal, setShowModal] = useState<boolean>(false);
   const { shareDocument } = useShareDocument();
   const router = useRouter();
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
   const toggleOrder = () => setOrderAscending(!orderAscending);
 
@@ -35,6 +36,11 @@ export default function DocumentsScreen() {
     setShowModal(!showModal)
   }
 
+  const handleRefresh = async () => {
+    setIsRefreshing(true);
+    await refetchDocuments();
+    setIsRefreshing(false);
+  };
 
   const renderContent = () => {
     if (isLoadingDocuments) {
@@ -49,10 +55,12 @@ export default function DocumentsScreen() {
 
       <FlatList
         key={viewMode}
-        bounces={false}
+        bounces={true}
         data={sortedDocuments}
         keyExtractor={(item) => item.ID}
         numColumns={viewMode === ViewMode.Grid ? 2 : 1}
+        refreshing={isRefreshing}
+        onRefresh={handleRefresh}
         renderItem={({ item }) =>
           viewMode === ViewMode.List ? (
             <DocumentCardDetails document={item} handleShareDocument={shareDocument} />
@@ -73,7 +81,7 @@ export default function DocumentsScreen() {
       </View>
       {renderContent()}
       <BlockButton text="Add document" iconType={IconType.Add} handlePress={toggleModal} />
-      <AddDocumentModal onAddDocument={(file) => { console.log('se selecciona esto', { file }) }} onClose={toggleModal} visible={showModal} />
+      <AddDocumentModal onAddDocument={(file) => { console.log('Selected file:', { file }) }} onClose={toggleModal} visible={showModal} />
     </View>
   );
 }
