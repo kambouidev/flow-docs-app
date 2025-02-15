@@ -4,6 +4,7 @@ import { timeAgo } from "../services/utils";
 import { Ionicons } from "@expo/vector-icons";
 import { INotification } from "../types/INotification";
 import { useBlinkAnimation } from "../hooks/useBlinkAnimation";
+import { colors } from "../constants/theme";
 
 const NotificationCard: FC<INotification> = ({ DocumentTitle, Timestamp, UserName, seen }) => {
     const animatedBackground = useBlinkAnimation(!seen);
@@ -20,7 +21,7 @@ const NotificationCard: FC<INotification> = ({ DocumentTitle, Timestamp, UserNam
             </View>
             <View>
                 <View style={styles.contentContainer}>
-                    <Ionicons name="document-text-outline" size={24} color="black" />
+                    <Ionicons name="document-text-outline" size={24} color={colors.black} />
                     <Text style={styles.contentText}>{DocumentTitle}</Text>
                 </View>
                 <View style={styles.timeAgoContainer}>
@@ -33,7 +34,7 @@ const NotificationCard: FC<INotification> = ({ DocumentTitle, Timestamp, UserNam
 
 const styles = StyleSheet.create({
     card: {
-        backgroundColor: "white",
+        backgroundColor: colors.white,
         padding: 10,
         borderRadius: 8,
         margin: 5

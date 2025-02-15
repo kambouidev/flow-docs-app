@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { colors } from '../constants/theme';
 
 interface ErrorIndicatorProps {
     message: string;
@@ -9,7 +10,7 @@ interface ErrorIndicatorProps {
 const ErrorIndicator: React.FC<ErrorIndicatorProps> = ({ message }) => {
     return (
         <View style={styles.container}>
-            <Ionicons name="alert-circle-outline" size={50} color="red" />
+            <Ionicons name="alert-circle-outline" size={50} color={colors.errorRed} />
             <Text style={styles.message}>{message}</Text>
         </View>
     );
@@ -24,7 +25,7 @@ const styles = StyleSheet.create({
     message: {
         marginTop: 10,
         fontSize: 16,
-        color: 'red',
+        color: colors.darkGray,
     },
 });
 

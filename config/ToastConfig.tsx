@@ -1,5 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { colors, globalShadow } from '../constants/theme';
 
 type ToastIcon = 'success' | 'error' | 'info'
 const getIcon = (type: ToastIcon) => {
@@ -19,7 +20,7 @@ export const toastConfig = {
         <View style={styles.container}>
             <TouchableOpacity style={styles.button} onPress={props?.redirect}>
                 <View style={styles.buttonContainer}>
-                    <Ionicons name={getIcon(props?.type)} size={24} color={props?.type === 'error' ? '#dc3545' : '#28a745'} />
+                    <Ionicons name={getIcon(props?.type)} size={24} color={props?.type === 'error' ? colors.errorRed : colors.successGreen} />
                     <Text><Text style={{ fontWeight: 'bold' }}>{props.userName}</Text> added new document!</Text>
                 </View>
             </TouchableOpacity>
@@ -33,17 +34,14 @@ const styles = StyleSheet.create({
         padding: 16
     },
     button: {
-        backgroundColor: 'white',
+        backgroundColor: colors.white,
         borderRadius: 15,
         padding: 15,
-        shadowColor: "#000",
+        ...globalShadow,
         shadowOffset: {
             width: 0,
             height: 2,
         },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
     },
     buttonContainer: {
         flex: 1,

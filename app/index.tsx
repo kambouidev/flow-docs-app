@@ -17,6 +17,7 @@ import LoadingIndicator from "../components/LoadingIndicator";
 import ErrorIndicator from "../components/ErrorIndicator";
 import Toast from "react-native-toast-message";
 import { toastConfig } from "../config/ToastConfig";
+import { colors } from "../constants/theme";
 
 export default function DocumentsScreen() {
   const { documents, isLoadingDocuments, errorGettingDocuments, refetchDocuments } = useDocumentsStore();
@@ -92,7 +93,7 @@ export default function DocumentsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F8F9FA"
+    backgroundColor: colors.lightGray
   },
   controls: {
     flexDirection: "row",

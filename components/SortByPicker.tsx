@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, Modal, StyleSheet } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { MaterialIcons, Entypo } from "@expo/vector-icons";
 import { SortOption } from "../types/IDocument";
+import { colors } from "../constants/theme";
 
 interface SortByPickerProps {
     onSelect: (value: SortOption) => void;
@@ -17,12 +18,12 @@ const SortByPicker: React.FC<SortByPickerProps> = ({ onSelect, onToggleOrder, or
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.button} onPress={() => setModalVisible(true)}>
-                <MaterialIcons name="sort" size={20} color="black" />
+                <MaterialIcons name="sort" size={20} color={colors.primaryBlue} />
                 <Text style={styles.buttonText}>Sort by: <Text style={styles.sortText}>{selected}</Text></Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.orderButton} onPress={onToggleOrder}>
-                <Entypo name={orderAscending ? "chevron-up" : "chevron-down"} size={24} color="black" />
+                <Entypo name={orderAscending ? "chevron-up" : "chevron-down"} size={24} color={colors.primaryBlue} />
             </TouchableOpacity>
 
             <Modal visible={modalVisible} transparent animationType="fade">
@@ -56,8 +57,8 @@ const styles = StyleSheet.create({
         alignItems: "center",
         borderRadius: 5,
         borderWidth: 1,
-        borderColor: 'grey',
-        backgroundColor: 'white'
+        borderColor: colors.borderGray,
+        backgroundColor: colors.white
     },
     button: {
         flexDirection: "row",
@@ -70,15 +71,19 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
     },
     sortText: { fontWeight: "condensed" },
-    orderButton: { padding: 10, borderLeftWidth: 1 },
+    orderButton: {
+        padding: 10,
+        borderLeftWidth: 1,
+        borderColor: colors.borderGray
+    },
     overlay: {
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "rgba(0,0,0,0.3)"
+        backgroundColor: colors.overlay
     },
     modalContent: {
-        backgroundColor: "white",
+        backgroundColor: colors.white,
         padding: 20,
         borderRadius: 5,
         width: 250
@@ -90,7 +95,7 @@ const styles = StyleSheet.create({
     },
     closeText: {
         fontSize: 16,
-        color: "blue"
+        color: colors.accentBlue
     },
 });
 

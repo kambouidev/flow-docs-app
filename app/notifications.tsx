@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import { useRouter } from "expo-router";
 import NotificationCard from "../components/NotificationCard";
 import { useNotificationsStore } from "../stores/notifications.store";
+import { colors } from "../constants/theme";
 
 
 export default function NotificationsScreen() {
@@ -41,7 +42,7 @@ export default function NotificationsScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#F8F9FA"
+        backgroundColor: colors.lightGray
     },
     content: {
         flex: 1,

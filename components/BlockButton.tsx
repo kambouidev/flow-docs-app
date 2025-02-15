@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import { View, TouchableOpacity, StyleSheet, Text } from 'react-native';
 import { Ionicons } from "@expo/vector-icons";
+import { colors } from '../constants/theme';
 
 export enum IconType {
     Add = "add",
@@ -8,7 +9,7 @@ export enum IconType {
 }
 
 const iconMap = {
-    [IconType.Add]: <Ionicons name="add" size={24} color="white" />,
+    [IconType.Add]: <Ionicons name="add" size={24} color={colors.white} />,
     // add more if needed
 };
 
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
     },
     button: {
         alignItems: 'center',
-        backgroundColor: 'blue',
+        backgroundColor: colors.primaryBlue,
         padding: 16,
         borderRadius: 10,
         display: 'flex',
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
         gap: 10
     },
     textButton: {
-        color: 'white',
+        color: colors.white,
         fontSize: 16
     },
     disable: {

@@ -21,6 +21,7 @@ import BlockButton from "./BlockButton";
 import { useAnimatedModal } from "../hooks/useAnimatedModal";
 import { useFilePicker } from "../hooks/useFilePicker";
 import { useDocumentForm } from "../hooks/useDocumentForm";
+import { colors } from "../constants/theme";
 
 interface AddDocumentModalProps {
     visible: boolean;
@@ -97,7 +98,7 @@ const AddDocumentModal: React.FC<AddDocumentModalProps> = ({ visible, onClose, o
                                         style={styles.fileButton}
                                         onPress={pickFiles}
                                     >
-                                        <MaterialIcons name="attach-file" size={20} color="blue" />
+                                        <MaterialIcons name="attach-file" size={20} color={colors.linkBlue} />
                                         <Text style={styles.fileText}>
                                             Add Files
                                         </Text>
@@ -113,7 +114,7 @@ const AddDocumentModal: React.FC<AddDocumentModalProps> = ({ visible, onClose, o
                                                 {file.name}
                                             </Text>
                                             <TouchableOpacity onPress={() => removeFile(index)}>
-                                                <MaterialIcons name="close" size={20} color="#ff0000" />
+                                                <MaterialIcons name="close" size={20} color={colors.errorRed} />
                                             </TouchableOpacity>
                                         </View>
                                     ))}
@@ -138,7 +139,7 @@ const AddDocumentModal: React.FC<AddDocumentModalProps> = ({ visible, onClose, o
 const styles = StyleSheet.create({
     overlay: {
         ...StyleSheet.absoluteFillObject,
-        backgroundColor: "rgba(0,0,0,0.3)",
+        backgroundColor: colors.overlay,
         justifyContent: "flex-end",
     },
     keyboardAvoidingView: {
@@ -146,7 +147,7 @@ const styles = StyleSheet.create({
         justifyContent: "flex-end",
     },
     modalContent: {
-        backgroundColor: "white",
+        backgroundColor: colors.white,
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
         width: "100%",
@@ -168,7 +169,7 @@ const styles = StyleSheet.create({
     },
     input: {
         borderWidth: 1,
-        borderColor: "#ccc",
+        borderColor: colors.borderGray,
         borderRadius: 5,
         padding: 10,
         marginTop: 5,
@@ -179,13 +180,13 @@ const styles = StyleSheet.create({
         alignItems: "center",
         padding: 10,
         borderWidth: 1,
-        borderColor: "#ccc",
+        borderColor: colors.borderGray,
         borderRadius: 5,
         marginTop: 5,
         marginBottom: 10,
     },
     fileText: {
-        color: "blue",
+        color: colors.linkBlue,
         marginLeft: 5,
     },
     fileItem: {
@@ -194,20 +195,19 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         padding: 10,
         borderWidth: 1,
-        borderColor: "#ccc",
+        borderColor: colors.borderGray,
         borderRadius: 5,
         marginTop: 5,
     },
     fileName: {
         flex: 1,
         marginRight: 10,
-        color: "#333",
+        color: colors.darkGray,
     },
     buttonContainer: {
         paddingHorizontal: 16,
-        backgroundColor: "white",
-        borderTopWidth: 1,
-        borderColor: "#eee",
+        borderTopWidth: 0.2,
+        borderColor: colors.lightBorderGray,
     },
 });
 

@@ -3,6 +3,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { IDocument } from '../types/IDocument';
 import { Entypo } from '@expo/vector-icons';
 import { timeAgo } from '../services/utils';
+import { colors, globalShadow } from '../constants/theme';
 
 interface DocumentCardDetailsProps {
     document: IDocument,
@@ -18,7 +19,7 @@ export const DocumentCardDetails: React.FC<DocumentCardDetailsProps> = ({ docume
                 {document.Title} <Text style={styles.cardVersion}>Version {document.Version}</Text>
             </Text>
             <TouchableOpacity style={styles.shareButton} onPress={() => handleShareDocument(document)}>
-                <Entypo name="share" size={24} color="blue" />
+                <Entypo name="share" size={24} color={colors.linkBlue} />
             </TouchableOpacity>
         </View>
 
@@ -42,14 +43,11 @@ export const DocumentCardDetails: React.FC<DocumentCardDetailsProps> = ({ docume
 
 const styles = StyleSheet.create({
     card: {
-        backgroundColor: "white",
+        ...globalShadow,
+        backgroundColor: colors.white,
         padding: 15,
         margin: 10,
         borderRadius: 8,
-        shadowColor: "#000",
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        elevation: 2
     },
     cardHeader: {
         display: 'flex',
@@ -71,7 +69,8 @@ const styles = StyleSheet.create({
     },
     cardVersion: {
         fontSize: 12,
-        color: "gray"
+        color: colors.gray,
+        fontWeight: '400'
     },
     cardSubtitle: {
         fontWeight: "bold",

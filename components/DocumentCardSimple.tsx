@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { IDocument } from '../types/IDocument';
+import { colors, globalShadow } from '../constants/theme';
 
 interface DocumentCardSimpleProps {
     document: IDocument
@@ -18,15 +19,12 @@ export const DocumentCardSimple: React.FC<DocumentCardSimpleProps> = ({ document
 
 const styles = StyleSheet.create({
     card: {
+        ...globalShadow,
         flex: 1,
-        backgroundColor: "white",
+        backgroundColor: colors.white,
         padding: 15,
         margin: 5,
         borderRadius: 8,
-        shadowColor: "#000",
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        elevation: 2,
         display: 'flex',
         flexDirection: 'column',
         maxWidth: '47%',
@@ -37,6 +35,6 @@ const styles = StyleSheet.create({
     },
     cardVersion: {
         fontSize: 12,
-        color: "gray"
+        color: colors.gray
     },
 });
