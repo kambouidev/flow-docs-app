@@ -1,50 +1,223 @@
-# Welcome to your Expo app 👋
+# Quick Start - Flow Docs App 🔧  
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## 📋 **Prerequisites**  
+1. **Node.js v20 or higher**  
+   - Download: [nodejs.org](https://nodejs.org/)  
+   - Verify version:  
+     ```bash
+     node --version
+     ```  
 
-## Get started
+2. **Git**  
+   - Install: [git-scm.com](https://git-scm.com/)  
 
-1. Install dependencies
-
+3. **Expo CLI (optional, recommended)**  
    ```bash
-   npm install
-   ```
+   npm install -g expo-cli
+   ```  
 
-2. Start the app
+---
 
+## 🛠 **Initial Setup**  
+
+1. **Clone the app repository**  
+2. **Install dependencies**  
    ```bash
-    npx expo start
-   ```
+     npm install
+   ```  
 
-In the output, you'll find options to open the app in a
+3. **`.env` File**  
+   - Create a `.env` file in the project root.  
+   - Add the variable:  
+     ```env
+     EXPO_PUBLIC_SERVER_ADDR="YOUR_LOCAL_IP:9090"
+     ```  
+   - **Example**:  
+     ```env
+     EXPO_PUBLIC_SERVER_ADDR="192.168.1.50:9090"
+     ```  
+   - **⚠️ Important**:  
+     - **`YOUR_LOCAL_IP`**: Your computer's IP on the local network.  
+       - **Windows**: `ipconfig` in CMD → Look for *IPv4*.  
+       - **Mac/Linux**: `ifconfig` in terminal → Look for *inet*.  
+     - **Port**: Must match the server port (recommended `9090`).  
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## 🖥 **Go Server**  
+1. **Clone and install**  
+   ```bash
+   git clone https://github.com/kambouidev/flow-docs-server.git
+   cd flow-docs-server
+   # Follow instructions from server's README.md
+   ```  
 
-## Get a fresh project
+2. **Run the server**  
+   ```bash
+   go run server.go -addr :9090
+   ```  
+   - Ensure the port matches the `.env` configuration.  
 
-When you're ready, run:
+---
 
-```bash
-npm run reset-project
-```
+## 📱 **Run the App**  
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+1. **Start Metro Bundler**  
+   ```bash
+   npm start
+   # or
+   npx expo start
+   ```  
 
-## Learn more
+2. **Testing options**:  
+   - **📲 Expo Go (physical device)**:  
+     - Scan the QR code from terminal or [expo.dev](https://expo.dev/).  
+     - **Requirements**:  
+       - Phone and PC on same network.  
+       - Firewall/antivirus allows port 9090 connections.  
 
-To learn more about developing your project with Expo, look at the following resources:
+   - **🤖 Android Studio Emulator**:  
+     - Requires configured emulator.  
+     - Press `a` in terminal after starting `npm start`.  
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+   - **🍎 iOS Simulator (macOS only)**:  
+     - Requires Xcode installed.  
+     - Press `i` in terminal after starting `npm start`.  
+---
+# Technical Documentation
 
-## Join the community
+## 📑 Table of Contents
+- [Overview](#overview)
+- [Technical Stack](#technical-stack)
+- [Architecture](#architecture)
+- [Features](#features)
+- [State Management](#state-management)
+- [Notifications System](#notifications-system)
 
-Join our community of developers creating universal apps.
+## Overview
+Flow Documents App is a mobile application developed with React Native, TypeScript, and Expo for document management. While it appears to be a fully functional document upload and visualization system, it currently operates with mock data as the backend is simulated. This approach allows for rapid development and testing of the user interface and interactions without the complexity of a real backend implementation.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Technical Stack
+
+### Core Technologies
+- **React Native**: Cross-platform mobile development framework
+- **TypeScript**: Static typing for better maintainability
+- **Expo**: Simplifies React Native development and deployment
+
+### Testing
+- **Jest**: Default testing framework
+- **@testing-library/react-native**: Component testing library
+  - Chosen over Enzyme for behavior-based testing approach
+
+### UI Components
+- **@expo/vector-icons**: Optimized icon system
+- **@react-native-picker/picker**: Native selection component
+- **react-native-toast-message**: Toast notifications system
+
+### Data Management
+- **@tanstack/react-query**: Server state management and caching
+- **jotai**: Local state management (chosen for atomic approach)
+- **axios**: HTTP client with enhanced error handling
+
+### Media & Files
+- **expo-av**: Audio playback functionality
+- **expo-document-picker**: File selection capabilities
+
+## Architecture
+
+### Application Structure
+The application is built using React Native with TypeScript and leverages Expo's framework. We chose to maintain Expo's default file-based routing structure within the `app` directory, as it provides a clean and intuitive way to organize the application's routes and views.
+
+### Real-time Communication
+The application implements a real-time notification system using WebSocket technology. When a user launches the application, it establishes a WebSocket connection to `ws://${process.env.EXPO_PUBLIC_SERVER_ADDR}/notifications`. This connection enables:
+
+- Instant updates about new documents
+- Real-time system changes
+- Immediate user notifications
+
+The WebSocket implementation is handled through a custom `useWebSocket` hook that manages:
+- Connection establishment
+- Automatic reconnection (every 5 seconds if connection is lost)
+- Message processing and distribution
+
+## Features
+
+### Document Management
+Although the document management system appears to handle actual file uploads and storage, it currently operates with mock data. This design decision allows us to:
+- Prototype and test the UI/UX without backend dependencies
+- Demonstrate the intended functionality
+- Easily transition to a real backend in the future
+
+### Notification System
+Our notification system is a comprehensive solution that combines visual, auditory, and interactive elements to provide a rich user experience.
+
+#### Real-time Notifications Architecture
+The notification system is built on three main pillars:
+
+1. **WebSocket Integration**
+   - Maintains persistent connection for real-time updates
+   - Processes incoming notification data
+   - Handles connection lifecycle and recovery
+
+2. **Toast Notification System**
+   The application uses a customized implementation of react-native-toast-message that includes:
+   - Custom-designed UI with vector icons
+   - Interactive navigation buttons
+   - Multiple notification types (success, error, info)
+   - Consistent styling with the app's theme
+
+3. **Audio Feedback System**
+   Using expo-av, we've implemented a sophisticated audio feedback system that:
+   - Preloads notification sounds for better performance
+   - Manages sound resources efficiently
+   - Provides automatic resource cleanup
+   - Handles playback timing and interruptions
+
+## State Management
+
+### Global State Architecture
+The application employs Jotai for state management, chosen specifically for its atomic approach and lightweight nature. This decision was made based on recent experience and the need for efficient state management without the overhead of larger solutions like Redux.
+
+#### State Organization
+The global state is primarily divided into two main domains:
+1. **Document Management**
+   - Centralized document list storage
+   - Real-time document status updates
+   - Cached document data
+
+2. **Notification System**
+   - Unread notification counter
+   - Notification history
+   - User interaction states
+
+### Data Flow Implementation
+The state management system follows these principles:
+- Atomic updates for better performance
+- Cross-component state sharing
+- Centralized data consistency
+- Efficient subscription model
+
+## Advanced Features
+
+### Notification Hook System
+The `useToastNotification` hook serves as a central coordinator for the notification system:
+- Manages audio playback
+- Controls toast display timing
+- Handles navigation events
+- Updates notification counters
+- Manages animation states
+
+### Visual Feedback System
+We've implemented a sophisticated visual feedback system that includes:
+- Blink animations for unread notifications
+- Configurable animation parameters
+- Smooth state transitions
+- Platform-specific optimizations
+
+## Best Practices and Considerations
+- Audio resources are preloaded to prevent playback delays
+- WebSocket connections include automatic recovery mechanisms
+- State updates are batched for better performance
+- Resources are properly cleaned up to prevent memory leaks
+- Error boundaries and fallbacks are implemented throughout
+
