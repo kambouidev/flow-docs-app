@@ -63,6 +63,7 @@ const AddDocumentModal: React.FC<AddDocumentModalProps> = ({ visible, onClose, o
                         style={styles.keyboardAvoidingView}
                     >
                         <Animated.View
+                            testID="modal-content"
                             style={[
                                 styles.modalContent,
                                 { transform: [{ translateY: modalTranslateY }] }
@@ -78,6 +79,7 @@ const AddDocumentModal: React.FC<AddDocumentModalProps> = ({ visible, onClose, o
                                 <View style={styles.formContainer}>
                                     <Text style={styles.label}>Name</Text>
                                     <TextInput
+                                        testID="name-input"
                                         style={styles.input}
                                         placeholder="Document name"
                                         value={name}
@@ -86,6 +88,7 @@ const AddDocumentModal: React.FC<AddDocumentModalProps> = ({ visible, onClose, o
 
                                     <Text style={styles.label}>Version</Text>
                                     <TextInput
+                                        testID="version-input"
                                         style={styles.input}
                                         placeholder="Document version"
                                         value={version}
@@ -94,6 +97,7 @@ const AddDocumentModal: React.FC<AddDocumentModalProps> = ({ visible, onClose, o
 
                                     <Text style={styles.label}>Files</Text>
                                     <TouchableOpacity
+                                        testID="add-files-button"
                                         style={styles.fileButton}
                                         onPress={pickFiles}
                                     >
@@ -106,13 +110,17 @@ const AddDocumentModal: React.FC<AddDocumentModalProps> = ({ visible, onClose, o
                                     {selectedFiles.map((file, index) => (
                                         <View key={index} style={styles.fileItem}>
                                             <Text
+                                                testID={`file-name-${index}`}
                                                 style={styles.fileName}
                                                 numberOfLines={1}
                                                 ellipsizeMode="tail"
                                             >
                                                 {file.name}
                                             </Text>
-                                            <TouchableOpacity onPress={() => removeFile(index)}>
+                                            <TouchableOpacity
+                                                testID={`file-remove-button-${index}`}
+                                                onPress={() => removeFile(index)}
+                                            >
                                                 <MaterialIcons name="close" size={20} color={colors.errorRed} />
                                             </TouchableOpacity>
                                         </View>
