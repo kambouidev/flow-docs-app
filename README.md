@@ -30,7 +30,7 @@
    - Create a `.env` file in the project root.  
    - Add the variable:  
      ```env
-     EXPO_PUBLIC_SERVER_ADDR="YOUR_LOCAL_IP:9090"
+     EXPO_PUBLIC_SERVER_ADDR="YOUR_LOCAL_IP:PORT"
      ```  
    - **Example**:  
      ```env
