@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { View, Text, TouchableOpacity, Modal, StyleSheet } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { MaterialIcons, Entypo } from "@expo/vector-icons";
-import { SortOption } from "../types/IDocument";
-import { colors } from "../constants/theme";
+import { SortOption } from "../../types/IDocument";
+import { colors } from "../../constants/theme";
 
 interface SortByPickerProps {
     onSelect: (value: SortOption) => void;

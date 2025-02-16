@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { IDocument } from '../types/IDocument';
-import { colors, globalShadow } from '../constants/theme';
+import { IDocument } from '../../types/IDocument';
+import { colors, globalShadow } from '../../constants/theme';
 
 interface DocumentCardSimpleProps {
     document: IDocument
@@ -9,7 +9,7 @@ interface DocumentCardSimpleProps {
 
 
 
-export const DocumentCardSimple: React.FC<DocumentCardSimpleProps> = ({ document: { Title, Version } }) => (
+const DocumentCardSimple: React.FC<DocumentCardSimpleProps> = ({ document: { Title, Version } }) => (
     <View style={styles.card}>
         <Text style={styles.cardTitle}>{Title}</Text>
         <Text style={styles.cardVersion}>Version {Version}</Text>
@@ -38,3 +38,5 @@ const styles = StyleSheet.create({
         color: colors.gray
     },
 });
+
+export default DocumentCardSimple;

@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { IDocument } from '../types/IDocument';
+import { IDocument } from '../../types/IDocument';
 import { Entypo } from '@expo/vector-icons';
-import { timeAgo } from '../services/utils';
-import { colors, globalShadow } from '../constants/theme';
+import { timeAgo } from '../../services/utils';
+import { colors, globalShadow } from '../../constants/theme';
 
 interface DocumentCardDetailsProps {
     document: IDocument,
@@ -12,7 +12,7 @@ interface DocumentCardDetailsProps {
 
 
 
-export const DocumentCardDetails: React.FC<DocumentCardDetailsProps> = ({ document, handleShareDocument }) => (
+const DocumentCardDetails: React.FC<DocumentCardDetailsProps> = ({ document, handleShareDocument }) => (
     <View style={styles.card}>
         <View style={styles.cardHeader}>
             <Text style={styles.cardTitle}>
@@ -82,3 +82,5 @@ const styles = StyleSheet.create({
         textAlign: 'right'
     },
 });
+
+export default DocumentCardDetails

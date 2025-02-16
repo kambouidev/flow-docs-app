@@ -1,23 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { View, FlatList, StyleSheet } from "react-native";
-import Header from "../components/Header";
-import { DocumentCardDetails } from "../components/DocumentCardDetails";
-import { DocumentCardSimple } from "../components/DocumentCardSimple";
-import SortByPicker from "../components/SortByPicker";
 import { SortOption, ViewMode } from "../types/IDocument";
-import ViewModeSelector from "../components/ViewModeSelector";
 import { useSortedDocuments } from "../hooks/useSortedDocuments";
-import BlockButton, { IconType } from "../components/BlockButton";
-import AddDocumentModal from "../components/AddDocumentModal";
 import { useShareDocument } from "../hooks/useShareDocument";
 import { useRouter } from "expo-router";
 import { useDocumentsStore } from "../stores/documents.store";
 import { useNotificationsStore } from "../stores/notifications.store";
-import LoadingIndicator from "../components/LoadingIndicator";
-import ErrorIndicator from "../components/ErrorIndicator";
 import Toast from "react-native-toast-message";
 import { toastConfig } from "../config/ToastConfig";
 import { colors } from "../constants/theme";
+import { BlockButton, ErrorIndicator, Header, LoadingIndicator, SortByPicker, ViewModeSelector } from "../components/common";
+import { AddDocumentModal, DocumentCardDetails, DocumentCardSimple } from "../components/documents";
 
 export default function DocumentsScreen() {
   const { documents, isLoadingDocuments, errorGettingDocuments, refetchDocuments } = useDocumentsStore();
@@ -83,7 +76,7 @@ export default function DocumentsScreen() {
         <ViewModeSelector viewMode={viewMode} onChangeViewMode={setViewMode} />
       </View>
       {renderContent()}
-      <BlockButton text="Add document" iconType={IconType.Add} handlePress={toggleModal} />
+      <BlockButton text="Add document" iconType={"add"} handlePress={toggleModal} />
       <AddDocumentModal onAddDocument={(file) => { console.log('Selected file:', { file }) }} onClose={toggleModal} visible={showModal} />
       <Toast config={toastConfig} />
     </View>

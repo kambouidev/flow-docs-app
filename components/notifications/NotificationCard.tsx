@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import { Animated, StyleSheet, Text, View } from "react-native";
-import { timeAgo } from "../services/utils";
+import { timeAgo } from "../../services/utils";
 import { Ionicons } from "@expo/vector-icons";
-import { INotification } from "../types/INotification";
-import { useBlinkAnimation } from "../hooks/useBlinkAnimation";
-import { colors } from "../constants/theme";
+import { INotification } from "../../types/INotification";
+import { useBlinkAnimation } from "../../hooks/useBlinkAnimation";
+import { colors } from "../../constants/theme";
 
 const NotificationCard: FC<INotification> = ({ DocumentTitle, Timestamp, UserName, seen }) => {
     const animatedBackground = useBlinkAnimation(!seen);

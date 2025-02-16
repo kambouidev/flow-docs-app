@@ -1,22 +1,19 @@
 import React, { FC } from 'react'
 import { View, TouchableOpacity, StyleSheet, Text } from 'react-native';
 import { Ionicons } from "@expo/vector-icons";
-import { colors } from '../constants/theme';
+import { colors } from '../../constants/theme';
 
-export enum IconType {
-    Add = "add",
-    // add more if needed
-}
+
 
 const iconMap = {
-    [IconType.Add]: <Ionicons name="add" size={24} color={colors.white} />,
+    "add": <Ionicons name="add" size={24} color={colors.white} />,
     // add more if needed
 };
 
 interface BlockButtonProps {
     text: string,
     handlePress: () => void
-    iconType?: IconType;
+    iconType?: "add";
     disabled?: boolean
 }
 

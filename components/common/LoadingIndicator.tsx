@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
-import { colors } from '../constants/theme';
+import { colors } from '../../constants/theme';
 
 interface LoadingIndicatorProps {
     message: string;

@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { colors } from '../constants/theme';
+import { colors } from '../../constants/theme';
 
-interface ErrorIndicatorProps {
+export interface ErrorIndicatorProps {
     message: string;
 }
 
