@@ -8,9 +8,15 @@ interface LoadingIndicatorProps {
 
 const LoadingIndicator: FC<LoadingIndicatorProps> = ({ message }) => {
     return (
-        <View style={styles.container}>
-            <ActivityIndicator size="large" color={colors.primaryBlue} />
-            <Text style={styles.message}>{message}</Text>
+        <View style={styles.container} testID="loading-container">
+            <ActivityIndicator
+                testID="loading-spinner"
+                size="large"
+                color={colors.primaryBlue}
+            />
+            <Text style={styles.message} testID="loading-message">
+                {message}
+            </Text>
         </View>
     );
 };
