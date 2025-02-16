@@ -5,11 +5,6 @@ import { colors } from '@constants/theme';
 
 
 
-const iconMap = {
-    "add": <Ionicons name="add" size={24} color={colors.white} />,
-    // add more if needed
-};
-
 interface BlockButtonProps {
     text: string,
     handlePress: () => void
@@ -18,13 +13,23 @@ interface BlockButtonProps {
 }
 
 const BlockButton: FC<BlockButtonProps> = ({ text, iconType, disabled, handlePress }) => {
+    const iconMap = {
+        "add": <Ionicons testID="icon-add" name="add" size={24} color={colors.white} />,
+        // add more if needed
+    };
+
     const icon = iconType ? iconMap[iconType] : null;
 
     return (
-        <View style={styles.container}>
-            <TouchableOpacity style={[styles.button, disabled && styles.disable]} onPress={handlePress} disabled={disabled}>
-                {icon && <View>{icon}</View>}
-                <Text style={styles.textButton}>{text}</Text>
+        <View style={styles.container} testID="block-button-container">
+            <TouchableOpacity
+                testID="block-button"
+                style={[styles.button, disabled && styles.disable]}
+                onPress={handlePress}
+                disabled={disabled}
+            >
+                {icon && <View testID="icon-container">{icon}</View>}
+                <Text style={styles.textButton} testID="button-text">{text}</Text>
             </TouchableOpacity>
         </View>
     )
