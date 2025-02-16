@@ -13,28 +13,48 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ title, onClose, backButton, goToNotifications, notifications }) => {
     return (
-        <View style={styles.header}>
-            <View style={styles.headerLeft}>
-                {backButton && <View>
-                    <TouchableOpacity style={styles.backButton} onPress={backButton}>
-                        <Ionicons name="chevron-back" size={24} color={colors.black} />
-                    </TouchableOpacity>
-                </View>}
-                <Text style={styles.headerTitle}>{title}</Text>
+        <View style={styles.header} testID="header-container">
+            <View style={styles.headerLeft} testID="header-left">
+                {backButton && (
+                    <View>
+                        <TouchableOpacity
+                            style={styles.backButton}
+                            onPress={backButton}
+                            testID="back-button"
+                        >
+                            <Ionicons name="chevron-back" size={24} color={colors.black} />
+                        </TouchableOpacity>
+                    </View>
+                )}
+                <Text style={styles.headerTitle} testID="header-title">{title}</Text>
             </View>
-            {onClose && <View>
-                <TouchableOpacity style={styles.backButton} onPress={onClose}>
-                    <Ionicons name="close" size={24} color={colors.black} />
-                </TouchableOpacity>
-            </View>}
-            {goToNotifications && <View>
-                <TouchableOpacity style={styles.notificationsButton} onPress={goToNotifications}>
-                    <Ionicons name="notifications-outline" size={24} color={colors.black} />
-                    {notifications !== undefined && notifications > 0 && <View style={styles.dot}>
-                        <Text style={styles.dotText}>{`${Math.min(notifications, 99)}`}</Text>
-                    </View>}
-                </TouchableOpacity>
-            </View>}
+            {onClose && (
+                <View>
+                    <TouchableOpacity
+                        style={styles.backButton}
+                        onPress={onClose}
+                        testID="close-button"
+                    >
+                        <Ionicons name="close" size={24} color={colors.black} />
+                    </TouchableOpacity>
+                </View>
+            )}
+            {goToNotifications && (
+                <View>
+                    <TouchableOpacity
+                        style={styles.notificationsButton}
+                        onPress={goToNotifications}
+                        testID="notifications-button"
+                    >
+                        <Ionicons name="notifications-outline" size={24} color={colors.black} />
+                        {notifications !== undefined && notifications > 0 && (
+                            <View style={styles.dot} testID="notifications-dot">
+                                <Text style={styles.dotText}>{`${Math.min(notifications, 99)}`}</Text>
+                            </View>
+                        )}
+                    </TouchableOpacity>
+                </View>
+            )}
         </View>
     );
 };
