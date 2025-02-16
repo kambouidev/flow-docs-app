@@ -9,9 +9,16 @@ export interface ErrorIndicatorProps {
 
 const ErrorIndicator: React.FC<ErrorIndicatorProps> = ({ message }) => {
     return (
-        <View style={styles.container}>
-            <Ionicons name="alert-circle-outline" size={50} color={colors.errorRed} />
-            <Text style={styles.message}>{message}</Text>
+        <View testID="error-indicator-container" style={styles.container}>
+            <Ionicons
+                testID="error-indicator-icon"
+                name="alert-circle-outline"
+                size={50}
+                color={colors.errorRed}
+            />
+            <Text testID="error-indicator-message" style={styles.message}>
+                {message}
+            </Text>
         </View>
     );
 };
