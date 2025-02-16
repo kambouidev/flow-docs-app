@@ -11,19 +11,31 @@ interface ViewModeSelectorProps {
 
 const ViewModeSelector: React.FC<ViewModeSelectorProps> = ({ viewMode, onChangeViewMode }) => {
     return (
-        <View style={styles.container}>
+        <View style={styles.container} testID="view-mode-container">
             <TouchableOpacity
+                testID="list-mode-button"
                 style={[styles.button, viewMode === ViewMode.List && styles.active]}
                 onPress={() => onChangeViewMode(ViewMode.List)}
             >
-                <MaterialIcons name="view-list" size={24} color={viewMode === ViewMode.List ? colors.linkBlue : colors.black} />
+                <MaterialIcons
+                    testID="icon-view-list"
+                    name="view-list"
+                    size={24}
+                    color={viewMode === ViewMode.List ? colors.linkBlue : colors.black}
+                />
             </TouchableOpacity>
 
             <TouchableOpacity
+                testID="grid-mode-button"
                 style={[styles.button, viewMode === ViewMode.Grid && styles.active]}
                 onPress={() => onChangeViewMode(ViewMode.Grid)}
             >
-                <MaterialIcons name="grid-view" size={24} color={viewMode === ViewMode.Grid ? colors.linkBlue : colors.black} />
+                <MaterialIcons
+                    testID="icon-grid-view"
+                    name="grid-view"
+                    size={24}
+                    color={viewMode === ViewMode.Grid ? colors.linkBlue : colors.black}
+                />
             </TouchableOpacity>
         </View>
     );
