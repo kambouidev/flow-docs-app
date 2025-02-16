@@ -16,17 +16,37 @@ const SortByPicker: React.FC<SortByPickerProps> = ({ onSelect, onToggleOrder, or
     const [modalVisible, setModalVisible] = useState<boolean>(false);
 
     return (
-        <View style={styles.container}>
-            <TouchableOpacity style={styles.button} onPress={() => setModalVisible(true)}>
+        <View style={styles.container} testID="sort-picker-container">
+            <TouchableOpacity
+                style={styles.button}
+                onPress={() => setModalVisible(true)}
+                testID="sort-button"
+            >
                 <MaterialIcons name="sort" size={20} color={colors.primaryBlue} />
-                <Text style={styles.buttonText}>Sort by: <Text style={styles.sortText}>{selected}</Text></Text>
+                <Text style={styles.buttonText} testID="sort-text">
+                    Sort by: <Text style={styles.sortText}>{selected}</Text>
+                </Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.orderButton} onPress={onToggleOrder}>
-                <Entypo name={orderAscending ? "chevron-up" : "chevron-down"} size={24} color={colors.primaryBlue} />
+            <TouchableOpacity
+                style={styles.orderButton}
+                onPress={onToggleOrder}
+                testID="order-button"
+            >
+                <Entypo
+                    name={orderAscending ? "chevron-up" : "chevron-down"}
+                    size={24}
+                    color={colors.primaryBlue}
+                    testID="order-icon"
+                />
             </TouchableOpacity>
 
-            <Modal visible={modalVisible} transparent animationType="fade">
+            <Modal
+                visible={modalVisible}
+                transparent
+                animationType="fade"
+                testID="sort-modal"
+            >
                 <View style={styles.overlay}>
                     <View style={styles.modalContent}>
                         <Picker
@@ -41,7 +61,11 @@ const SortByPicker: React.FC<SortByPickerProps> = ({ onSelect, onToggleOrder, or
                                 <Picker.Item key={option} label={option.charAt(0).toUpperCase() + option.slice(1)} value={option} />
                             ))}
                         </Picker>
-                        <TouchableOpacity style={styles.closeButton} onPress={() => setModalVisible(false)}>
+                        <TouchableOpacity
+                            style={styles.closeButton}
+                            onPress={() => setModalVisible(false)}
+                            testID="close-modal-button"
+                        >
                             <Text style={styles.closeText}>Close</Text>
                         </TouchableOpacity>
                     </View>
