@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import { View, FlatList, StyleSheet } from "react-native";
-import { SortOption, ViewMode } from "../types/IDocument";
-import { useSortedDocuments } from "../hooks/useSortedDocuments";
-import { useShareDocument } from "../hooks/useShareDocument";
+import { useSortedDocuments } from "@hooks/useSortedDocuments";
+import { useShareDocument } from "@hooks/useShareDocument";
 import { useRouter } from "expo-router";
-import { useDocumentsStore } from "../stores/documents.store";
-import { useNotificationsStore } from "../stores/notifications.store";
 import Toast from "react-native-toast-message";
-import { toastConfig } from "../config/ToastConfig";
-import { colors } from "../constants/theme";
-import { BlockButton, ErrorIndicator, Header, LoadingIndicator, SortByPicker, ViewModeSelector } from "../components/common";
-import { AddDocumentModal, DocumentCardDetails, DocumentCardSimple } from "../components/documents";
+import { colors } from "@constants/theme";
+import { BlockButton, ErrorIndicator, Header, LoadingIndicator, SortByPicker, ViewModeSelector } from "@components/common";
+import { AddDocumentModal, DocumentCardDetails, DocumentCardSimple } from "@components/documents";
+import { toastConfig } from '@config/ToastConfig';
+import { useDocumentsStore, useNotificationsStore } from '@stores/index';
+import { SortOption, ViewMode } from '@/types/IDocument';
 
 export default function DocumentsScreen() {
   const { documents, isLoadingDocuments, errorGettingDocuments, refetchDocuments } = useDocumentsStore();

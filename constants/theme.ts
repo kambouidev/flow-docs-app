@@ -1,5 +1,3 @@
-// src/theme/colors.ts
-
 export const colors = {
   lightGray: '#F8F9FA',
   white: '#FFFFFF',

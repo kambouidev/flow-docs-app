@@ -1,5 +1,5 @@
 import { atom, useAtom } from 'jotai';
-import { INotification } from '../types/INotification';
+import { INotification } from '@/types/INotification';
 
 const notificationsAtom = atom<INotification[]>([]);
 export function useNotificationsStore() {

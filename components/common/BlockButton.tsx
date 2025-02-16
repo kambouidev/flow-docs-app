@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { View, TouchableOpacity, StyleSheet, Text } from 'react-native';
 import { Ionicons } from "@expo/vector-icons";
-import { colors } from '../../constants/theme';
+import { colors } from '@constants/theme';
 
 
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { IDocument } from '../../types/IDocument';
-import { colors, globalShadow } from '../../constants/theme';
+import { IDocument } from '@/types/IDocument';
+import { colors, globalShadow } from '@constants/theme';
 
 interface DocumentCardSimpleProps {
     document: IDocument

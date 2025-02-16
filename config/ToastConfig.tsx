@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { colors, globalShadow } from '../constants/theme';
+import { colors, globalShadow } from '@constants/theme';
 
 type ToastIcon = 'success' | 'error' | 'info'
 const getIcon = (type: ToastIcon) => {

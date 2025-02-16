@@ -1,6 +1,6 @@
 import { useEffect, useRef, useCallback, useState } from 'react';
-import { INotification } from '../types/INotification';
-import { useToastNotification } from './useToastNotification';
+import { INotification } from '@/types/INotification';
+import { useToastNotification } from '@hooks/useToastNotification';
 
 type WebSocketStatus = 'CONNECTING' | 'OPEN' | 'CLOSED' | 'CLOSING';
 

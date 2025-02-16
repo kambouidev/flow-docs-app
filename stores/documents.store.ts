@@ -1,6 +1,6 @@
 import { atom, useAtom } from 'jotai';
-import { IDocument } from '../types/IDocument';
-import { useGetDocuments } from '../hooks/useGetDocuments';
+import { IDocument } from '@/types/IDocument';
+import { useGetDocuments } from '@hooks/useGetDocuments';
 import { useEffect } from 'react';
 
 const documentsAtom = atom<IDocument[]>([]);

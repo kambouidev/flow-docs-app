@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { IDocument, SortOption } from '../types/IDocument';
+import { IDocument, SortOption } from '@/types/IDocument';
 
 interface UseSortedDocumentsProps {
   documents: IDocument[];

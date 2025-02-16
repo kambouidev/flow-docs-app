@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { IDocument } from '../../types/IDocument';
+import { IDocument } from '@/types/IDocument';
 import { Entypo } from '@expo/vector-icons';
-import { timeAgo } from '../../services/utils';
-import { colors, globalShadow } from '../../constants/theme';
+import { timeAgo } from '@services/utils';
+import { colors, globalShadow } from '@constants/theme';
 
 interface DocumentCardDetailsProps {
     document: IDocument,

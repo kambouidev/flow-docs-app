@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import { useRouter } from "expo-router";
-import { useNotificationsStore } from "../stores/notifications.store";
-import { colors } from "../constants/theme";
-import { NotificationCard } from "../components/notifications";
-import { Header } from "../components/common";
+import { useNotificationsStore } from "@stores/notifications.store";
+import { colors } from "@constants/theme";
+import { NotificationCard } from "@components/notifications";
+import { Header } from "@components/common";
 
 
 export default function NotificationsScreen() {

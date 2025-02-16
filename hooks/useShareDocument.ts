@@ -1,6 +1,6 @@
 import { Share } from 'react-native';
-import { IDocument } from '../types/IDocument';
-import { formatDate, generateLink } from '../services/utils';
+import { IDocument } from '@/types/IDocument';
+import { formatDate, generateLink } from '@services/utils';
 
 export function useShareDocument() {
   const shareDocument = async (document: IDocument) => {

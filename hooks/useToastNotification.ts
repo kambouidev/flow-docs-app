@@ -1,6 +1,6 @@
 import Toast from 'react-native-toast-message';
-import { useNotificationsStore } from '../stores/notifications.store';
-import { INotification } from '../types/INotification';
+import { useNotificationsStore } from '@stores/notifications.store';
+import { INotification } from '@/types/INotification';
 import { useRouter, useSegments } from 'expo-router';
 import { useEffect, useCallback, useRef } from 'react';
 import { Audio } from 'expo-av';

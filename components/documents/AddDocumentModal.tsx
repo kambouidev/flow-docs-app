@@ -16,11 +16,11 @@ import {
     Dimensions
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-import { useAnimatedModal } from "../../hooks/useAnimatedModal";
-import { useFilePicker } from "../../hooks/useFilePicker";
-import { useDocumentForm } from "../../hooks/useDocumentForm";
-import { colors } from "../../constants/theme";
-import { BlockButton, Header } from "../common";
+import { useAnimatedModal } from "@hooks/useAnimatedModal";
+import { useFilePicker } from "@hooks/useFilePicker";
+import { useDocumentForm } from "@hooks/useDocumentForm";
+import { colors } from "@constants/theme";
+import { BlockButton, Header } from "@components/common";
 
 interface AddDocumentModalProps {
     visible: boolean;

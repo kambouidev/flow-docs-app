@@ -1,8 +1,8 @@
 import React from "react";
 import { View, TouchableOpacity, StyleSheet } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-import { ViewMode } from "../../types/IDocument";
-import { colors } from "../../constants/theme";
+import { ViewMode } from "@/types/IDocument";
+import { colors } from "@constants/theme";
 
 interface ViewModeSelectorProps {
     viewMode: ViewMode;
