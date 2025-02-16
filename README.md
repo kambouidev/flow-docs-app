@@ -93,6 +93,7 @@
 - [Features](#features)
 - [State Management](#state-management)
 - [Notifications System](#notifications-system)
+- [Testing](#testing)
 
 ## Overview
 Flow Documents App is a mobile application developed with React Native, TypeScript, and Expo for document management. While it appears to be a fully functional document upload and visualization system, it currently operates with mock data as the backend is simulated. This approach allows for rapid development and testing of the user interface and interactions without the complexity of a real backend implementation.
@@ -220,4 +221,19 @@ We've implemented a sophisticated visual feedback system that includes:
 - State updates are batched for better performance
 - Resources are properly cleaned up to prevent memory leaks
 - Error boundaries and fallbacks are implemented throughout
+
+## Testing
+
+### Unit Testing
+Currently, only unit tests have been implemented to ensure the core functionalities of the application work as expected. 
+
+### Running Tests
+To execute the test suite, run the following command:
+```bash
+npm run test
+```
+This will trigger Jest to run all available test files and output the results in the terminal.
+
+---
+
 
